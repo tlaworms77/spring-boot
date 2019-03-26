@@ -32,6 +32,7 @@
 
 	<logger name="com.douzone.mysite.controller"  level="info" additivity="false">
             <appender-ref ref="fileAppender" />
+            <appender-ref ref="consoleAppender" />
     </logger>
 	
 	<!-- 루트(글로벌) 로거 -->
