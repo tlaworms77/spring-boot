@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello World</h1>
+오늘 저녁은 뭘까?
 </body>
 </html>

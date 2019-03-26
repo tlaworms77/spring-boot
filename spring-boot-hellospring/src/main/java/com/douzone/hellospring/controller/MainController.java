@@ -10,31 +10,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MainController {
-	
 	@ResponseBody
-	// reuqest mapping : 메서드에만
+	//request mapping : 메스드 단톡 매핑
 	@RequestMapping({"/main", ""})
 	public String main() {
 		return "MainController:main()";
 	}
 	
+
 	@ResponseBody
-	// reuqest mapping : 메서드에만
-	@RequestMapping("/main2/a/b/c/d")
-	public String main2() {
-		return "MainController:main2()";
-	}
-	
-	/*
-	 *  비추천
-	 *  기술이 침투되어 있다.
-	 *  
-	 */
-	@ResponseBody
-	@RequestMapping("/main3")
+	//request mapping : 메스드 단톡 매핑
+	@RequestMapping("/main/a/b/c/d")
 	public String main3(HttpServletRequest request, Writer out) {
-		String name = request.getParameter("n");
 		return "MainController:main3()";
 	}
-	
 }
