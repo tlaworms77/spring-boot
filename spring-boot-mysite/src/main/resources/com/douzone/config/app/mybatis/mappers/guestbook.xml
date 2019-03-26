@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guestbook">
+
+	<select id="getList" resultType="guestbookvo">
+		<![CDATA[			
+		  select no, 
+		         name, 
+		         message, 
+		         date_format(reg_date, '%Y-%m-%d') as regDate
+		    from guestbook
+	  	order by reg_date desc
+	  	]]>
+	</select>
+	
+	<select id="getList2" resultType="guestbookvo" parameterType="long">
+		<![CDATA[			
+		  select no, 
+		         name, 
+		         message, 
+		         date_format(reg_date, '%Y-%m-%d') as regDate
+		    from guestbook
+		]]>    
+		<if test="_parameter > 0">
+			<![CDATA[
+			where no < #{_parameter}   
+			]]>    
+		</if>
+		<![CDATA[   
+	  	order by no desc
+	  	   limit 0, 5	
+	  	]]>
+	</select>	
+	
+	<insert id="insert" parameterType="guestbookvo">
+		<![CDATA[
+		 insert 
+		   into guestbook 
+		 values( null, #{name }, #{password }, #{message }, now() )
+		]]>
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<delete id="delete" parameterType="guestbookvo">
+		<![CDATA[
+		delete 
+		  from guestbook 
+		 where no = #{no } and passwd = #{password }
+		]]>	
+	</delete>
+	
+	
+	<select id="getAjaxList" parameterType="int" resultType="guestbookvo">
+		<![CDATA[			
+		  select no, 
+		         name, 
+		         message, 
+		         date_format(reg_date, '%Y-%m-%d') as regDate
+		    from guestbook
+	  	order by reg_date desc
+	  	   limit #{page}, 5;
+	  	]]>
+	</select>
+	<!-- ajax insert -->
+	<insert id="insert2" parameterType="map">
+		<![CDATA[
+		 insert 
+		   into guestbook 
+		 values( null, #{name }, #{password }, #{message }, now() )
+		]]>
+	</insert>
+	<select id="getLastId" resultType="long">
+		<![CDATA[
+		 select last_insert_id()
+		]]>
+	</select>
+	<select id="getLatelyList" parameterType="map" resultType="guestbookvo">
+		<![CDATA[			
+		  select no, 
+		         name, 
+		         message, 
+		         date_format(reg_date, '%Y-%m-%d') as regDate
+		    from guestbook
+		    where no = #{lastId}
+	  	order by reg_date desc
+	  	   limit #{page}, 5;
+	  	]]>
+	</select>
+	
+	
+</mapper>
