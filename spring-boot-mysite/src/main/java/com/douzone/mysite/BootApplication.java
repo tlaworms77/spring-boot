@@ -7,23 +7,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 
-import com.douzone.config.web.FileUploadConfig;
 import com.douzone.config.web.MVCConfig;
-import com.douzone.config.web.MessagesConfig;
-import com.douzone.config.web.SecurityConfig;
 
+// 자동으로 안되는 위치일 때
 //@SpringBootConfiguration
 //@EnableAutoConfiguration
 //@ComponentScan("com.douzone.mysite.controller")
 
 //@EnableAspectJAutoProxy
+// 자기 이하 패키지는 자동 스캐닝됨
 @SpringBootApplication
 public class BootApplication {
 
 	@Configuration
 	@EnableAspectJAutoProxy
 	@ComponentScan({ "com.douzone.mysite.controller", "com.douzone.mysite.exception" })
-	@Import(value = { MVCConfig.class, SecurityConfig.class, MessagesConfig.class, FileUploadConfig.class })
+	@Import(value = { MVCConfig.class })
 	public class WebConfig {
 
 	}
