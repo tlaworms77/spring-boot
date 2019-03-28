@@ -16,7 +16,6 @@ public class MeasureExecutionTimeAspect {
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
 		
-		
 		// method 실행
 		Object result = pjp.proceed();
 		

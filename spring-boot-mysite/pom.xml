@@ -10,6 +10,7 @@
 	</parent>
 
 	<artifactId>spring-boot-mysite</artifactId>
+<!-- 	<packaging>war</packaging> -->
 
 	<dependencies>
 		<!-- spring boot web starter -->
